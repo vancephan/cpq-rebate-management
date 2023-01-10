@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReferencePricePerUnit</fullName>
+    <inlineHelpText>The price that’s agreed-upon with the claimant for a unit of the product.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>
