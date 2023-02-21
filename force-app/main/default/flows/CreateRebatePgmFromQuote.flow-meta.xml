@@ -247,12 +247,6 @@
             <targetReference>LoopOnQuoteLines</targetReference>
         </connector>
         <inputAssignments>
-            <field>BenefitValue</field>
-            <value>
-                <elementReference>LoopOnQuoteLines.Rebate__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>MinimumQualifyingValue</field>
             <value>
                 <numberValue>0.0</numberValue>
@@ -469,13 +463,6 @@
                 <elementReference>QuoteId</elementReference>
             </value>
         </filters>
-        <filters>
-            <field>Rebate__c</field>
-            <operator>GreaterThan</operator>
-            <value>
-                <numberValue>0.0</numberValue>
-            </value>
-        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>SBQQ__QuoteLine__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -540,19 +527,6 @@
         </connector>
     </start>
     <status>Active</status>
-    <subflows>
-        <name>LaunchTransactionAggregate</name>
-        <label>LaunchTransactionAggregate</label>
-        <locationX>778</locationX>
-        <locationY>703</locationY>
-        <flowName>Order_Transaction_Aggregate_Calculate</flowName>
-        <inputAssignments>
-            <name>RebateProgramId</name>
-            <value>
-                <elementReference>CreateRebatePgm</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
     <variables>
         <name>QuoteId</name>
         <dataType>String</dataType>
