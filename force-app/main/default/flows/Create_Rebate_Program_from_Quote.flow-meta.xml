@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionCalls>
+        <name>Parse_Selected_Lines</name>
+        <label>Parse Selected Lines</label>
+        <locationX>952</locationX>
+        <locationY>694</locationY>
+        <actionName>ParseMultiSelectFlowValues</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>values</name>
+            <value>
+                <elementReference>Selected_Lines_for_Rebate</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>57.0</apiVersion>
     <assignments>
         <name>Assign_Rebate_Program_Member</name>
@@ -115,6 +131,9 @@
                 <stringValue>RebateMemberProductAggregate</stringValue>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Get_Available_Quote_Lines</targetReference>
+        </connector>
     </assignments>
     <dynamicChoiceSets>
         <name>LinesforRebate</name>
@@ -195,8 +214,8 @@
     <recordLookups>
         <name>Get_Available_Quote_Lines</name>
         <label>Get Available Quote Lines</label>
-        <locationX>423</locationX>
-        <locationY>695</locationY>
+        <locationX>425</locationX>
+        <locationY>694</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Pick_Products_for_Rebates</targetReference>
@@ -258,16 +277,19 @@
     <screens>
         <name>Pick_Products_for_Rebates</name>
         <label>Pick Products for Rebates</label>
-        <locationX>771</locationX>
-        <locationY>695</locationY>
+        <locationX>774</locationX>
+        <locationY>694</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Parse_Selected_Lines</targetReference>
+        </connector>
         <fields>
-            <name>Available_Quoted_Products</name>
+            <name>Selected_Lines_for_Rebate</name>
             <choiceReferences>LinesforRebate</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Available Quoted Products</fieldText>
+            <fieldText>Selected Lines for Rebate</fieldText>
             <fieldType>MultiSelectCheckboxes</fieldType>
             <isRequired>false</isRequired>
         </fields>

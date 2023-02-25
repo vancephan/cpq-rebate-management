@@ -10,6 +10,7 @@
         <connector>
             <targetReference>LoopOnAggregates</targetReference>
         </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>AggregateId</name>
             <value>
