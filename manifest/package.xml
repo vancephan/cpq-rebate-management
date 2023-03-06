@@ -52,5 +52,9 @@
 		<members>*</members>
 		<name>StaticResource</name>
 	</types>
+	<types>
+		<name>PermissionSet</name>
+		<members>*</members>
+	</types>
 	<version>55.0</version>
 </Package>
