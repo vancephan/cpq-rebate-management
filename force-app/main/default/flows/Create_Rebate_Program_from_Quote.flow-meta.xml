@@ -42,8 +42,8 @@
     <assignments>
         <name>Assign_Line_Ids_Selected</name>
         <label>Assign Line Ids Selected</label>
-        <locationX>957</locationX>
-        <locationY>867</locationY>
+        <locationX>1027</locationX>
+        <locationY>862</locationY>
         <assignmentItems>
             <assignToReference>ListofIdsSelected</assignToReference>
             <operator>Assign</operator>
@@ -261,7 +261,7 @@
             <assignToReference>NewProgramRebateType.Name</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Over_Selected_Lines.Name</elementReference>
+                <elementReference>Get_Selected_Quote_Line.SBQQ__DiscountSchedule__r.Name</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -340,7 +340,7 @@
             <assignToReference>NewProgramRebateType.Name</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Over_Selected_Lines.Name</elementReference>
+                <elementReference>Get_Selected_Quote_Line.SBQQ__DiscountSchedule__r.Name</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -413,11 +413,8 @@
             <name>Schedule_Is_Percentage</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Loop_Over_Selected_Lines.SBQQ__DiscountSchedule__r.SBQQ__DiscountUnit__c</leftValueReference>
+                <leftValueReference>Get_Selected_Quote_Line.SBQQ__DiscountSchedule__r.SBQQ__DiscountUnit__c</leftValueReference>
                 <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Percent</stringValue>
-                </rightValue>
             </conditions>
             <connector>
                 <targetReference>Set_Program_Rebate_Type_0_0</targetReference>
@@ -428,7 +425,7 @@
             <name>Schedule_is_Amount</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Loop_Over_Selected_Lines.SBQQ__DiscountSchedule__r.SBQQ__DiscountUnit__c</leftValueReference>
+                <leftValueReference>Get_Selected_Quote_Line.SBQQ__DiscountSchedule__r.SBQQ__DiscountUnit__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Amount</stringValue>
@@ -476,7 +473,7 @@
     <formulas>
         <name>CalculatedEndDate</name>
         <dataType>Date</dataType>
-        <expression>IF( ISNULL({!Get_Quote_Info.SBQQ__EndDate__c}) = TRUE, ADDMONTHS({!Get_Quote_Info.SBQQ__StartDate__c},{!Get_Quote_Info.SBQQ__SubscriptionTerm__c}), {!Get_Quote_Info.SBQQ__EndDate__c})</expression>
+        <expression>IF( ISNULL({!Get_Quote_Info.SBQQ__EndDate__c}) = TRUE, ADDMONTHS({!Get_Quote_Info.SBQQ__StartDate__c},{!Get_Quote_Info.SBQQ__SubscriptionTerm__c}) - 1, {!Get_Quote_Info.SBQQ__EndDate__c})</expression>
     </formulas>
     <formulas>
         <name>RebateProgramName</name>
@@ -508,14 +505,14 @@
         </nextValueConnector>
     </loops>
     <loops>
-        <name>Loop_Over_Selected_Lines</name>
-        <label>Loop Over Selected Lines</label>
-        <locationX>601</locationX>
-        <locationY>890</locationY>
-        <collectionReference>Get_Selected_Quote_Lines</collectionReference>
+        <name>Loop_Over_Selected_Line_IDs</name>
+        <label>Loop Over Selected Line IDs</label>
+        <locationX>1017</locationX>
+        <locationY>1031</locationY>
+        <collectionReference>ListofIdsSelected</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Check_Schedule_Type</targetReference>
+            <targetReference>Get_Selected_Quote_Line</targetReference>
         </nextValueConnector>
     </loops>
     <processMetadataValues>
@@ -615,11 +612,11 @@
     <recordLookups>
         <name>Get_Batch_Calc_Job</name>
         <label>Get Batch Calc Job (Aggregate by Product and Member)</label>
-        <locationX>874</locationX>
-        <locationY>1031</locationY>
+        <locationX>1177</locationX>
+        <locationY>992</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Selected_Quote_Lines</targetReference>
+            <targetReference>Loop_Over_Selected_Line_IDs</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -689,7 +686,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Loop_Over_Selected_Lines.SBQQ__DiscountSchedule__c</elementReference>
+                <elementReference>Get_Selected_Quote_Line.SBQQ__DiscountSchedule__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -710,7 +707,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Loop_Over_Selected_Lines.SBQQ__DiscountSchedule__c</elementReference>
+                <elementReference>Get_Selected_Quote_Line.SBQQ__DiscountSchedule__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -741,23 +738,23 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>Get_Selected_Quote_Lines</name>
-        <label>Get Selected Quote Lines</label>
-        <locationX>778</locationX>
+        <name>Get_Selected_Quote_Line</name>
+        <label>Get Selected Quote Line</label>
+        <locationX>777</locationX>
         <locationY>871</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Loop_Over_Selected_Lines</targetReference>
+            <targetReference>Check_Schedule_Type</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
-            <operator>In</operator>
+            <operator>EqualTo</operator>
             <value>
-                <elementReference>ListofIdsSelected</elementReference>
+                <elementReference>Loop_Over_Selected_Line_IDs</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>SBQQ__QuoteLine__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
