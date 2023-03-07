@@ -14,7 +14,7 @@
         <inputParameters>
             <name>rebateProgramId</name>
             <value>
-                <elementReference>Create_New_Rebate_Program</elementReference>
+                <elementReference>NewRebateProgram.Id</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
