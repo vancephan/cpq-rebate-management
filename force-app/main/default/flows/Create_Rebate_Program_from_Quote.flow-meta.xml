@@ -191,28 +191,28 @@
             <assignToReference>NewProgramRebateTypeBenefit.Name</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Over_Amount_Tiers.Name</elementReference>
+                <elementReference>Loop_Over_Percent_Tiers.Name</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>NewProgramRebateTypeBenefit.MinimumQualifyingValue</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Over_Amount_Tiers.SBQQ__LowerBound__c</elementReference>
+                <elementReference>Loop_Over_Percent_Tiers.SBQQ__LowerBound__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>NewProgramRebateTypeBenefit.MaximumQualifyingValue</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Over_Amount_Tiers.SBQQ__UpperBound__c</elementReference>
+                <elementReference>Loop_Over_Percent_Tiers.SBQQ__UpperBound__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>NewProgramRebateTypeBenefit.BenefitValue</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Over_Amount_Tiers.SBQQ__Discount__c</elementReference>
+                <elementReference>Loop_Over_Percent_Tiers.SBQQ__Discount__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
