@@ -12,7 +12,7 @@ global class ParseMultiSelectFlowValues {
  
            finalLst.add(lstnew);
 
-           system.debug('Final List is ', finalLst);
+           system.debug('Final List is ' + finalLst);
  
            return finalLst; 
         } 
