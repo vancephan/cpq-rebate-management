@@ -95,8 +95,8 @@
     <assignments>
         <name>Set_Amount_Program_Rebate_Type_Benefit</name>
         <label>Set Amount Program Rebate Type Benefit</label>
-        <locationX>552</locationX>
-        <locationY>2124</locationY>
+        <locationX>401</locationX>
+        <locationY>2129</locationY>
         <assignmentItems>
             <assignToReference>NewProgramRebateTypeBenefit.ProgramRebateTypeId</assignToReference>
             <operator>Assign</operator>
@@ -137,6 +137,13 @@
             <operator>Assign</operator>
             <value>
                 <stringValue>Inactive</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewProgramRebateTypeBenefit.ProductId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Selected_Quote_Line.SBQQ__Product__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -197,8 +204,8 @@
     <assignments>
         <name>Set_Percent_Program_Rebate_Type_Benefit</name>
         <label>Set Percent Program Rebate Type Benefit</label>
-        <locationX>158</locationX>
-        <locationY>2029</locationY>
+        <locationX>14</locationX>
+        <locationY>2003</locationY>
         <assignmentItems>
             <assignToReference>NewProgramRebateTypeBenefit.ProgramRebateTypeId</assignToReference>
             <operator>Assign</operator>
@@ -239,6 +246,13 @@
             <operator>Assign</operator>
             <value>
                 <stringValue>Inactive</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewProgramRebateTypeBenefit.ProductId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Selected_Quote_Line.SBQQ__Product__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -415,6 +429,9 @@
             <conditions>
                 <leftValueReference>Get_Selected_Quote_Line.SBQQ__DiscountSchedule__r.SBQQ__DiscountUnit__c</leftValueReference>
                 <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Percent</stringValue>
+                </rightValue>
             </conditions>
             <connector>
                 <targetReference>Set_Program_Rebate_Type_0_0</targetReference>
@@ -485,24 +502,30 @@
     <loops>
         <name>Loop_Over_Amount_Tiers</name>
         <label>Loop Over Amount Tiers</label>
-        <locationX>557</locationX>
-        <locationY>1926</locationY>
+        <locationX>412</locationX>
+        <locationY>1945</locationY>
         <collectionReference>Get_Discount_Tiers_Amount</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Set_Amount_Program_Rebate_Type_Benefit</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Loop_Over_Selected_Line_IDs</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <loops>
         <name>Loop_Over_Percent_Tiers</name>
         <label>Loop Over Percent Tiers</label>
-        <locationX>169</locationX>
-        <locationY>1819</locationY>
+        <locationX>77</locationX>
+        <locationY>1818</locationY>
         <collectionReference>Get_Discount_Tiers_Percent</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Set_Percent_Program_Rebate_Type_Benefit</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Loop_Over_Selected_Line_IDs</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <loops>
         <name>Loop_Over_Selected_Line_IDs</name>
@@ -537,8 +560,11 @@
     <recordCreates>
         <name>Create_Amount_Program_Rebate_Type_Benefit</name>
         <label>Create Amount Program Rebate Type Benefit</label>
-        <locationX>556</locationX>
-        <locationY>2291</locationY>
+        <locationX>1021</locationX>
+        <locationY>2129</locationY>
+        <connector>
+            <targetReference>Loop_Over_Amount_Tiers</targetReference>
+        </connector>
         <inputReference>NewProgramRebateTypeBenefit</inputReference>
     </recordCreates>
     <recordCreates>
@@ -554,8 +580,11 @@
     <recordCreates>
         <name>Create_Percent_Program_Rebate_Type_Benefit</name>
         <label>Create Percent Program Rebate Type Benefit</label>
-        <locationX>163</locationX>
-        <locationY>2238</locationY>
+        <locationX>123</locationX>
+        <locationY>2204</locationY>
+        <connector>
+            <targetReference>Loop_Over_Percent_Tiers</targetReference>
+        </connector>
         <inputReference>NewProgramRebateTypeBenefit</inputReference>
     </recordCreates>
     <recordCreates>
@@ -633,8 +662,8 @@
     <recordLookups>
         <name>Get_Discount_Tiers_Amount</name>
         <label>Get Discount Tiers (Amount)</label>
-        <locationX>548</locationX>
-        <locationY>1743</locationY>
+        <locationX>413</locationX>
+        <locationY>1768</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Over_Amount_Tiers</targetReference>
@@ -647,15 +676,24 @@
                 <elementReference>Get_Line_Discount_Schedule.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>CurrencyIsoCode</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Quote_Info.CurrencyIsoCode</elementReference>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>SBQQ__DiscountTier__c</object>
+        <sortField>SBQQ__Number__c</sortField>
+        <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>Get_Discount_Tiers_Percent</name>
         <label>Get Discount Tiers (Percent)</label>
-        <locationX>169</locationX>
-        <locationY>1623</locationY>
+        <locationX>93</locationX>
+        <locationY>1634</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Over_Percent_Tiers</targetReference>
@@ -670,6 +708,8 @@
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>SBQQ__DiscountTier__c</object>
+        <sortField>SBQQ__Number__c</sortField>
+        <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -696,8 +736,8 @@
     <recordLookups>
         <name>Get_Line_Discount_Schedule_0</name>
         <label>Get Line Discount Schedule (Percent)</label>
-        <locationX>143</locationX>
-        <locationY>1426</locationY>
+        <locationX>144</locationX>
+        <locationY>1431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Discount_Tiers_Percent</targetReference>
