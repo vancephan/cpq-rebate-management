@@ -11,6 +11,8 @@ global class ParseMultiSelectFlowValues {
            list<list<string>> finalLst = new list<list<string>>();
  
            finalLst.add(lstnew);
+
+           system.debug('Final List is ', finalLst);
  
            return finalLst; 
         } 
