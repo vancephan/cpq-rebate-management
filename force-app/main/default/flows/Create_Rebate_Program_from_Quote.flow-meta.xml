@@ -294,6 +294,13 @@
                 <stringValue>Inactive</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewProgramRebateType.MeasureField</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>TotalQuantity</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Create_Program_Rebate_Type</targetReference>
         </connector>
@@ -342,7 +349,7 @@
             <assignToReference>NewProgramRebateType.BenefitQualifierField</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>TotalQuantity</stringValue>
+                <stringValue>TotalTransactionAmount</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -364,6 +371,13 @@
             <operator>Assign</operator>
             <value>
                 <stringValue>Inactive</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewProgramRebateType.MeasureField</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>TotalTransactionAmount</stringValue>
             </value>
         </assignmentItems>
         <connector>

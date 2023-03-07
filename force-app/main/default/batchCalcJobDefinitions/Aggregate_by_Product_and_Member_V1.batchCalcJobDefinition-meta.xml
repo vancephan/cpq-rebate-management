@@ -629,16 +629,16 @@
             <secondarySourceFieldName>RebateProgramMemberId</secondarySourceFieldName>
         </joinKeys>
         <joinKeys>
+            <primarySourceFieldName>PayoutPeriodId</primarySourceFieldName>
+            <secondarySourceFieldName>RebateProgramPayoutPeriodId</secondarySourceFieldName>
+        </joinKeys>
+        <joinKeys>
             <primarySourceFieldName>ProductId</primarySourceFieldName>
             <secondarySourceFieldName>ProductId</secondarySourceFieldName>
         </joinKeys>
         <joinKeys>
             <primarySourceFieldName>RebateTypeId</primarySourceFieldName>
             <secondarySourceFieldName>ProgramRebateTypeId</secondarySourceFieldName>
-        </joinKeys>
-        <joinKeys>
-            <primarySourceFieldName>PayoutPeriodId</primarySourceFieldName>
-            <secondarySourceFieldName>RebateProgramPayoutPeriodId</secondarySourceFieldName>
         </joinKeys>
         <label>Look Up Existing Aggregate Data</label>
         <name>LookUpExistingAggregateData</name>
@@ -820,12 +820,12 @@
             <sourceName>FilterTransactionJournalsWithValidActivityDates</sourceName>
         </fields>
         <joinKeys>
-            <primarySourceFieldName>RebateTypeId</primarySourceFieldName>
-            <secondarySourceFieldName>ProgramRebateTypeId</secondarySourceFieldName>
-        </joinKeys>
-        <joinKeys>
             <primarySourceFieldName>ProductId</primarySourceFieldName>
             <secondarySourceFieldName>ProductId</secondarySourceFieldName>
+        </joinKeys>
+        <joinKeys>
+            <primarySourceFieldName>RebateTypeId</primarySourceFieldName>
+            <secondarySourceFieldName>ProgramRebateTypeId</secondarySourceFieldName>
         </joinKeys>
         <label>Valid Activity Dated Journals with Program Rebate Type Product</label>
         <name>ValidActivityDatedJournalsWithProgramRebateTypeProduct</name>
@@ -921,7 +921,7 @@
         <name>RebateProgramPayoutPeriodFilter</name>
     </parameters>
     <processType>Rebates</processType>
-    <status>Inactive</status>
+    <status>Active</status>
     <transforms>
         <description>Identifies new or updated records to be upserted into the Rebate Program Member Aggregate object.</description>
         <expressionFields>
