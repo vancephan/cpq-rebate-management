@@ -53,10 +53,17 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>NewRebateProgram.Status</assignToReference>
+            <assignToReference>NewRebateMember.MemberStatus</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Active</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewRebateMember.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Info.SBQQ__Account__r.Name</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -734,7 +741,7 @@
             <targetReference>Get_Quote_Info</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>ListofIdsSelected</name>
         <dataType>String</dataType>
