@@ -534,10 +534,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>MasterLabel</field>
+            <field>DeveloperName</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Aggregate by Product and Member</stringValue>
+                <stringValue>AggregateByProduct</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
