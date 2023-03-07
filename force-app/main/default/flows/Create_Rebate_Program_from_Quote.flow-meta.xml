@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionCalls>
+        <name>Generate_Payout_Periods</name>
+        <label>Generate Payout Periods</label>
+        <locationX>479</locationX>
+        <locationY>542</locationY>
+        <actionName>generateRebatePayoutPeriods</actionName>
+        <actionType>generateRebatePayoutPeriods</actionType>
+        <connector>
+            <targetReference>Get_Available_Quote_Lines</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>rebateProgramId</name>
+            <value>
+                <elementReference>Create_New_Rebate_Program</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Parse_Selected_Lines</name>
         <label>Parse Selected Lines</label>
         <locationX>958</locationX>
@@ -568,15 +587,15 @@
         <locationX>702</locationX>
         <locationY>485</locationY>
         <connector>
-            <targetReference>Get_Available_Quote_Lines</targetReference>
+            <targetReference>Generate_Payout_Periods</targetReference>
         </connector>
         <inputReference>NewRebateMember</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_Available_Quote_Lines</name>
         <label>Get Available Quote Lines</label>
-        <locationX>425</locationX>
-        <locationY>694</locationY>
+        <locationX>586</locationX>
+        <locationY>700</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Pick_Products_for_Rebates</targetReference>
