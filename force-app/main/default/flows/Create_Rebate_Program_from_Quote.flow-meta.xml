@@ -28,6 +28,9 @@
         <assignmentItems>
             <assignToReference>ListofIdsSelected</assignToReference>
             <operator>Assign</operator>
+            <value>
+                <elementReference>Parse_Selected_Lines</elementReference>
+            </value>
         </assignmentItems>
         <connector>
             <targetReference>Get_Batch_Calc_Job</targetReference>
