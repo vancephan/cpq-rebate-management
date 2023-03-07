@@ -161,6 +161,13 @@
                 <stringValue>Draft</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewRebateProgram.Quote__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Info.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Create_New_Rebate_Program</targetReference>
         </connector>
@@ -637,6 +644,8 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>SBQQ__Quote__c</object>
+        <sortField>Id</sortField>
+        <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -660,6 +669,7 @@
         <object>SBQQ__QuoteLine__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Pick_Products_for_Rebates</name>
         <label>Pick Products for Rebates</label>
@@ -741,7 +751,7 @@
             <targetReference>Get_Quote_Info</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>ListofIdsSelected</name>
         <dataType>String</dataType>
