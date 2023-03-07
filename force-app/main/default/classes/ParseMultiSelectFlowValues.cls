@@ -6,7 +6,7 @@ global class ParseMultiSelectFlowValues {
        if(!(values.isEmpty())){ 
            string tempStr = values[0];
  
-           List<String> lstnew = tempStr.split('; ');
+           List<String> lstnew = tempStr.split(';');
  
            list<list<string>> finalLst = new list<list<string>>();
  
